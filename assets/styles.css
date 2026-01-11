@@ -1,5 +1,11 @@
 /* assets/styles.css */
-@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap");
+@font-face {
+    font-family: "PixelVN";
+    src: url("./fonts/PixelVN.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 :root {
     /* Theme */
@@ -39,9 +45,7 @@ body {
     min-height: 100vh;
     height: auto; /* quan trọng: tránh background chỉ vẽ trong 1 viewport */
     margin: 0;
-
-    font-family: "Press Start 2P", ui-monospace, monospace;
-    font-size: 14px; /* 👈 tăng lại */
+    font-family: "PixelVN", ui-monospace, monospace;
     line-height: 1.6;
     color: var(--text);
     -webkit-font-smoothing: antialiased;
@@ -401,9 +405,10 @@ footer {
 }
 
 .guide-modal {
-    width: min(680px, 100%);
-    padding: 16px;
-    border-radius: 16px;
+    font-family: "PixelVN", system-ui, -apple-system, BlinkMacSystemFont,
+        sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
 }
 
 .guide-title {
@@ -472,6 +477,20 @@ footer {
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
         Arial, sans-serif !important;
     letter-spacing: 0 !important;
+}
+.guide-example {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: rgba(7, 18, 37, 0.45);
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+.guide-example code {
+    color: var(--text);
 }
 
 /* Mobile: modal gọn hơn, nút dễ bấm */
