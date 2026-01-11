@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8" />
   <title>Mail Viewer (Pixel)</title>
@@ -29,10 +30,8 @@
     <!-- Controls -->
     <div class="panel pixel-border p-4 mb-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <input id="tagInput" class="pixel-input"
-          placeholder="Name mail..." />
-        <input id="searchInput" class="pixel-input"
-          placeholder="SEARCH SUBJECT..." />
+        <input id="tagInput" class="pixel-input" placeholder="Name mail..." />
+        <input id="searchInput" class="pixel-input" placeholder="SEARCH SUBJECT..." />
         <button id="loadBtn" class="pixel-btn btn-primary">
           LOAD
         </button>
@@ -41,14 +40,19 @@
       <div id="status" class="small-text text-[color:var(--muted)] mt-4"></div>
     </div>
 
+    <div id="pagination" class="mt-3"></div>
+
     <!-- List -->
     <div id="mailList" class="space-y-4"></div>
 
+    <div id="pagination" class="mt-3"></div>
+
     <div class="tiny-text text-[color:var(--muted)] opacity-70 mt-8">
-      © Pixel Mail Viewer — chạy GitHub Pages + Cloudflare Worker
+      © Pixel Mail Viewer — Danh Van Vao
     </div>
   </div>
 
   <script type="module" src="./assets/app.js"></script>
 </body>
+
 </html>

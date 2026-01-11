@@ -283,3 +283,37 @@ footer {
   html { height: -webkit-fill-available; }
 }
 
+.pager {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.pager-info {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 0 8px;
+}
+
+.pager button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.3);
+}
+
+/* mobile: pager không bị tràn */
+@media (max-width: 520px) {
+  .pager {
+    gap: 8px;
+    padding: 10px;
+  }
+  .pager-info {
+    font-size: 10px;
+    text-align: center;
+  }
+}
+
+

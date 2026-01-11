@@ -152,3 +152,23 @@ function escapeAttr(s) {
         .replaceAll("&", "&amp;")
         .replaceAll('"', "&quot;");
 }
+// assets/ui.js
+export function setPagination({ page, totalPages }) {
+  const el = document.getElementById("pagination");
+  if (!el) return;
+
+  const disabledPrev = page <= 1 ? "disabled" : "";
+  const disabledNext = page >= totalPages ? "disabled" : "";
+
+  el.innerHTML = `
+    <div class="pager pixel-border panel">
+      <button class="pixel-btn btn-primary" data-page="first" ${disabledPrev}>⏮</button>
+      <button class="pixel-btn btn-primary" data-page="prev" ${disabledPrev}>◀</button>
+
+      <span class="pager-info">PAGE ${page} / ${totalPages}</span>
+
+      <button class="pixel-btn btn-primary" data-page="next" ${disabledNext}>▶</button>
+      <button class="pixel-btn btn-primary" data-page="last" ${disabledNext}>⏭</button>
+    </div>
+  `;
+}
