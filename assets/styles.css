@@ -396,28 +396,44 @@ footer {
     justify-content: center;
     padding: 14px;
 
-    /* dim nền mạnh hơn */
-    background: rgba(0, 0, 0, 0.62);
-
-    /* blur nền phía sau */
+    /* dim + blur nền phía sau (đẹp và nổi modal) */
+    background: radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.72)
+    );
     backdrop-filter: blur(8px) saturate(120%);
     -webkit-backdrop-filter: blur(8px) saturate(120%);
 }
 
 .guide-modal {
-    font-family: "PixelVN", system-ui, -apple-system, BlinkMacSystemFont,
-        sans-serif;
+    /* Kích thước đẹp (không bé lọt thỏm) */
+    width: min(92vw, 560px);
+    padding: 18px;
+    border-radius: 16px;
+
+    /* Giữ pixel nhưng vẫn fallback nếu PixelVN thiếu dấu */
+    font-family: "PixelVN", ui-monospace, Menlo, Monaco, Consolas, "Segoe UI",
+        Arial, sans-serif;
     font-size: 13px;
-    line-height: 1.7;
+    line-height: 1.75;
+
+    /* Cảm giác “panel” rõ */
+    background: linear-gradient(
+        180deg,
+        rgba(15, 33, 66, 0.92),
+        rgba(11, 23, 48, 0.92)
+    );
 }
 
 .guide-title {
     font-size: 14px;
     margin-bottom: 12px;
+    letter-spacing: 0.5px;
 }
 
 .guide-card {
-    background: rgba(7, 18, 37, 0.35);
+    background: rgba(7, 18, 37, 0.38);
     padding: 12px;
     border-radius: 12px;
     margin-bottom: 12px;
@@ -442,7 +458,7 @@ footer {
 }
 
 .guide-text {
-    background: rgba(7, 18, 37, 0.18);
+    background: rgba(7, 18, 37, 0.22);
     padding: 12px;
     border-radius: 12px;
     border: 2px solid rgba(45, 90, 166, 0.35);
@@ -452,18 +468,33 @@ footer {
     margin: 0;
     padding-left: 18px;
 }
-
 .guide-steps li {
     margin: 8px 0;
     font-size: 11px;
+    line-height: 1.8;
+}
+
+.guide-example {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border: 2px solid rgba(45, 90, 166, 0.7);
+    border-radius: 10px;
+    background: rgba(7, 18, 37, 0.55);
+    color: var(--muted);
+    font-size: 11px;
     line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+.guide-example code {
+    color: var(--text);
+    font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
 }
 
 .guide-note {
     margin-top: 10px;
     font-size: 10px;
     color: var(--muted);
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 .guide-actions {
@@ -472,34 +503,16 @@ footer {
     gap: 10px;
     margin-top: 14px;
 }
-.guide-modal,
-.guide-modal * {
-    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-        Arial, sans-serif !important;
-    letter-spacing: 0 !important;
-}
-.guide-example {
-    margin-top: 10px;
-    padding: 10px 12px;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    background: rgba(7, 18, 37, 0.45);
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.7;
-    overflow-wrap: anywhere;
-}
-.guide-example code {
-    color: var(--text);
-}
 
-/* Mobile: modal gọn hơn, nút dễ bấm */
+/* Mobile: modal rộng hơn + nút dễ bấm */
 @media (max-width: 520px) {
-    .guide-title {
+    .guide-modal {
+        width: min(94vw, 520px);
+        padding: 14px;
         font-size: 12px;
     }
-    .guide-modal {
-        padding: 14px;
+    .guide-title {
+        font-size: 12px;
     }
     .guide-actions {
         grid-template-columns: 1fr;
