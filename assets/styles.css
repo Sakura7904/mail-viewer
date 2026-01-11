@@ -2,19 +2,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 :root{
-  --bg1:#071225;
-  --bg2:#0b1e3a;
+  --bg1:#0a1c3a;     /* sáng hơn */
+  --bg2:#123a7a;     /* sáng hơn */
 
-  --blue:#3b82f6;  /* blue-500 */
-  --blue2:#60a5fa; /* blue-400 */
+  --blue:#3b82f6;
+  --blue2:#7ab6ff;   /* sáng hơn */
   --pink:#ff4fd8;
-  --pink2:#ff86e8;
+  --pink2:#ff9df0;
 
-  --panel:#0b1730;
-  --panel2:#0f2142;
-  --text:#eaf2ff;
-  --muted:#a9c1ff;
-  --border:#24406f;
+  --panel:#0f2b57;   /* sáng hơn */
+  --panel2:#103063;
+  --text:#f3f7ff;
+  --muted:#c9dcff;
+  --border:#2d5aa6;
 }
 
 html, body { height: 100%; }
@@ -22,8 +22,8 @@ html, body { height: 100%; }
 body{
   font-family: "Press Start 2P", ui-monospace, monospace;
   background:
-    radial-gradient(1200px 600px at 20% 10%, rgba(59,130,246,.25), transparent 60%),
-    radial-gradient(900px 500px at 80% 25%, rgba(255,79,216,.18), transparent 55%),
+    radial-gradient(1200px 700px at 18% 12%, rgba(122,182,255,.35), transparent 60%),
+    radial-gradient(900px 600px at 82% 22%, rgba(255,157,240,.22), transparent 55%),
     linear-gradient(180deg, var(--bg2), var(--bg1));
   color: var(--text);
 }
@@ -99,3 +99,39 @@ body{
 
 .small-text { font-size: 12px; line-height: 1.6; }
 .tiny-text  { font-size: 10px; line-height: 1.6; }
+
+/* Toast */
+.toast{
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  background: rgba(7,18,37,.92);
+  border: 2px solid var(--border);
+  box-shadow: 0 0 0 2px rgba(0,0,0,.55), 6px 6px 0 rgba(0,0,0,.35);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  z-index: 9999;
+  max-width: calc(100vw - 24px);
+  text-align: center;
+}
+.toast.show{ display:block; }
+.hidden{ display:none; }
+
+/* Mobile optimize */
+@media (max-width: 480px){
+  body{ font-size: 12px; }
+
+  .pixel-btn{ padding: 12px 12px; }
+  .pixel-input{ padding: 12px 12px; }
+
+  /* giảm shadow để đỡ “nặng” trên mobile */
+  .pixel-border{
+    box-shadow: 0 0 0 2px rgba(0,0,0,.45), 4px 4px 0 rgba(0,0,0,.28);
+  }
+
+  /* iframe thấp hơn chút cho vừa màn hình */
+  iframe{ height: 360px !important; }
+}
