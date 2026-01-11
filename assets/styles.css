@@ -2,27 +2,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 :root {
-  /* Theme */
-  --bg1: #0a1c3a;
-  --bg2: #123a7a;
+    /* Theme */
+    --bg1: #0a1c3a;
+    --bg2: #123a7a;
 
-  --blue: #3b82f6;
-  --blue2: #7ab6ff;
-  --pink: #ff4fd8;
-  --pink2: #ff9df0;
+    --blue: #3b82f6;
+    --blue2: #7ab6ff;
+    --pink: #ff4fd8;
+    --pink2: #ff9df0;
 
-  --panelTop: rgba(15, 33, 66, 0.86);
-  --panelBot: rgba(11, 23, 48, 0.86);
+    --panelTop: rgba(15, 33, 66, 0.86);
+    --panelBot: rgba(11, 23, 48, 0.86);
 
-  --text: #f3f7ff;
-  --muted: #c9dcff;
-  --border: #2d5aa6;
+    --text: #f3f7ff;
+    --muted: #c9dcff;
+    --border: #2d5aa6;
 
-  --shadow1: rgba(0, 0, 0, 0.55);
-  --shadow2: rgba(0, 0, 0, 0.35);
+    --shadow1: rgba(0, 0, 0, 0.55);
+    --shadow2: rgba(0, 0, 0, 0.35);
 
-  --radius: 14px;
-  --radiusSmall: 10px;
+    --radius: 14px;
+    --radiusSmall: 10px;
 }
 
 /* =========================================
@@ -31,289 +31,419 @@
    - Đặt nền trên html + body
    ========================================= */
 html {
-  min-height: 100%;
-  background: linear-gradient(180deg, var(--bg2), var(--bg1));
+    min-height: 100%;
+    background: linear-gradient(180deg, var(--bg2), var(--bg1));
 }
 
 body {
-  min-height: 100vh;
-  height: auto; /* quan trọng: tránh background chỉ vẽ trong 1 viewport */
-  margin: 0;
+    min-height: 100vh;
+    height: auto; /* quan trọng: tránh background chỉ vẽ trong 1 viewport */
+    margin: 0;
 
-  font-family: "Press Start 2P", ui-monospace, monospace;
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: geometricPrecision;
+    font-family: "Press Start 2P", ui-monospace, monospace;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
 
-  /* Nền: radial glow + gradient */
-  background-image:
-    radial-gradient(1200px 700px at 18% 12%, rgba(122, 182, 255, 0.35), transparent 60%),
-    radial-gradient(900px 600px at 82% 22%, rgba(255, 157, 240, 0.22), transparent 55%),
-    linear-gradient(180deg, var(--bg2), var(--bg1));
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-size: auto, auto, cover;
+    /* Nền: radial glow + gradient */
+    background-image: radial-gradient(
+            1200px 700px at 18% 12%,
+            rgba(122, 182, 255, 0.35),
+            transparent 60%
+        ),
+        radial-gradient(
+            900px 600px at 82% 22%,
+            rgba(255, 157, 240, 0.22),
+            transparent 55%
+        ),
+        linear-gradient(180deg, var(--bg2), var(--bg1));
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: auto, auto, cover;
 
-  /* iOS/Safari: fixed background hay gây split -> không dùng */
-  background-attachment: scroll;
+    /* iOS/Safari: fixed background hay gây split -> không dùng */
+    background-attachment: scroll;
 }
 
 /* Nếu bạn dùng wrapper/container bọc ngoài, không cho nó “ăn” background/height */
-.app, .wrapper, .container, main {
-  background: transparent !important;
-  height: auto !important;
-  min-height: 0 !important;
+.app,
+.wrapper,
+.container,
+main {
+    background: transparent !important;
+    height: auto !important;
+    min-height: 0 !important;
 }
 
 /* =========================================
    Pixel Noise Overlay
    ========================================= */
 .pixel-noise {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.07;
-  z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
-  background-size: 220px 220px;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.07;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+    background-size: 220px 220px;
 }
 
 /* =========================================
    Layout helpers (optional)
    ========================================= */
 .container {
-  position: relative;
-  z-index: 1; /* trên noise */
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 26px 18px;
+    position: relative;
+    z-index: 1; /* trên noise */
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 26px 18px;
 }
 
-.small-text { font-size: 12px; line-height: 1.6; }
-.tiny-text  { font-size: 10px; line-height: 1.6; }
+.small-text {
+    font-size: 12px;
+    line-height: 1.6;
+}
+.tiny-text {
+    font-size: 10px;
+    line-height: 1.6;
+}
 
 /* =========================================
    Pixel UI building blocks
    ========================================= */
 .pixel-border {
-  border: 2px solid var(--border);
-  box-shadow: 0 0 0 2px var(--shadow1), 6px 6px 0 0 var(--shadow2);
-  border-radius: var(--radiusSmall);
+    border: 2px solid var(--border);
+    box-shadow: 0 0 0 2px var(--shadow1), 6px 6px 0 0 var(--shadow2);
+    border-radius: var(--radiusSmall);
 }
 
 .panel {
-  background: linear-gradient(180deg, var(--panelTop), var(--panelBot));
-  border-radius: var(--radius);
+    background: linear-gradient(180deg, var(--panelTop), var(--panelBot));
+    border-radius: var(--radius);
 }
 
 .pixel-input {
-  border: 2px solid var(--border);
-  border-radius: var(--radiusSmall);
-  background: rgba(7, 18, 37, 0.55);
-  color: var(--text);
-  padding: 12px 14px;
-  outline: none;
-  box-shadow: inset 0 0 0 2px rgba(0,0,0,0.15);
+    border: 2px solid var(--border);
+    border-radius: var(--radiusSmall);
+    background: rgba(7, 18, 37, 0.55);
+    color: var(--text);
+    padding: 12px 14px;
+    outline: none;
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.15);
 }
 
 .pixel-input::placeholder {
-  color: rgba(169, 193, 255, 0.65);
+    color: rgba(169, 193, 255, 0.65);
 }
 
 /* Buttons */
 .pixel-btn {
-  border: 2px solid var(--border);
-  border-radius: var(--radiusSmall);
-  padding: 12px 14px;
-  cursor: pointer;
+    border: 2px solid var(--border);
+    border-radius: var(--radiusSmall);
+    padding: 12px 14px;
+    cursor: pointer;
 
-  box-shadow: 0 0 0 2px var(--shadow1), 4px 4px 0 var(--shadow2);
-  transition: transform 0.06s ease, filter 0.15s ease;
-  user-select: none;
+    box-shadow: 0 0 0 2px var(--shadow1), 4px 4px 0 var(--shadow2);
+    transition: transform 0.06s ease, filter 0.15s ease;
+    user-select: none;
 }
 
 .pixel-btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 0 0 0 2px var(--shadow1), 2px 2px 0 var(--shadow2);
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 2px var(--shadow1), 2px 2px 0 var(--shadow2);
 }
 
 .btn-primary {
-  background: linear-gradient(180deg, var(--blue2), var(--blue));
-  color: #071225;
+    background: linear-gradient(180deg, var(--blue2), var(--blue));
+    color: #071225;
 }
 
 .btn-accent {
-  background: linear-gradient(180deg, var(--pink2), var(--pink));
-  color: #071225;
+    background: linear-gradient(180deg, var(--pink2), var(--pink));
+    color: #071225;
 }
 
 .badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 10px;
-  border-radius: 999px;
-  border: 2px solid var(--border);
-  background: rgba(7, 18, 37, 0.45);
-  color: var(--muted);
-  box-shadow: 0 0 0 2px var(--shadow1);
-  font-size: 12px;
-  max-width: 100%;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 2px solid var(--border);
+    background: rgba(7, 18, 37, 0.45);
+    color: var(--muted);
+    box-shadow: 0 0 0 2px var(--shadow1);
+    font-size: 12px;
+    max-width: 100%;
 }
 
 /* =========================================
    Toast
    ========================================= */
 .toast {
-  position: fixed;
-  left: 50%;
-  bottom: 18px;
-  transform: translateX(-50%);
-  background: rgba(7, 18, 37, 0.92);
-  border: 2px solid var(--border);
-  box-shadow: 0 0 0 2px var(--shadow1), 6px 6px 0 var(--shadow2);
-  color: var(--text);
-  padding: 10px 12px;
-  border-radius: var(--radiusSmall);
-  font-size: 12px;
-  z-index: 9999;
-  max-width: calc(100vw - 24px);
-  text-align: center;
-  display: none;
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    background: rgba(7, 18, 37, 0.92);
+    border: 2px solid var(--border);
+    box-shadow: 0 0 0 2px var(--shadow1), 6px 6px 0 var(--shadow2);
+    color: var(--text);
+    padding: 10px 12px;
+    border-radius: var(--radiusSmall);
+    font-size: 12px;
+    z-index: 9999;
+    max-width: calc(100vw - 24px);
+    text-align: center;
+    display: none;
 }
-.toast.show { display: block; }
-.hidden { display: none; }
+.toast.show {
+    display: block;
+}
+.hidden {
+    display: none;
+}
 
 /* =========================================
    Mail list styling (nếu UI bạn có class này)
    ========================================= */
 .mail-item {
-  padding: 18px 16px;
+    padding: 18px 16px;
 }
 
 .mail-subject {
-  font-size: 14px;
-  line-height: 1.55;
-  word-break: break-word;
+    font-size: 14px;
+    line-height: 1.55;
+    word-break: break-word;
 }
 
 .mail-to {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .code-row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 iframe {
-  width: 100%;
-  border: 0;
-  border-radius: var(--radiusSmall);
-  background: rgba(255,255,255,0.03);
+    width: 100%;
+    border: 0;
+    border-radius: var(--radiusSmall);
+    background: rgba(255, 255, 255, 0.03);
 }
 
 /* Footer */
 footer {
-  opacity: 0.75;
-  margin-top: 16px;
+    opacity: 0.75;
+    margin-top: 16px;
 }
 
 /* =========================================
    Mobile-first tune
    ========================================= */
 @media (max-width: 520px) {
-  body { font-size: 11px; }
+    body {
+        font-size: 11px;
+    }
 
-  .container { padding: 14px 12px; }
+    .container {
+        padding: 14px 12px;
+    }
 
-  .badge {
-    font-size: 10px;
-    padding: 8px 10px;
-  }
+    .badge {
+        font-size: 10px;
+        padding: 8px 10px;
+    }
 
-  .pixel-input {
-    width: 100%;
-    padding: 14px 12px;
-    font-size: 11px;
-  }
+    .pixel-input {
+        width: 100%;
+        padding: 14px 12px;
+        font-size: 11px;
+    }
 
-  .pixel-btn {
-    width: 100%;
-    padding: 14px 12px;
-    font-size: 11px;
-  }
+    .pixel-btn {
+        width: 100%;
+        padding: 14px 12px;
+        font-size: 11px;
+    }
 
-  .panel { border-radius: 14px; }
+    .panel {
+        border-radius: 14px;
+    }
 
-  .pixel-border {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.38), 3px 3px 0 rgba(0, 0, 0, 0.22);
-  }
+    .pixel-border {
+        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.38), 3px 3px 0 rgba(0, 0, 0, 0.22);
+    }
 
-  .mail-item { padding: 14px 12px; }
+    .mail-item {
+        padding: 14px 12px;
+    }
 
-  .mail-subject {
-    font-size: 12px;
-    line-height: 1.55;
-  }
+    .mail-subject {
+        font-size: 12px;
+        line-height: 1.55;
+    }
 
-  .code-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    align-items: stretch;
-  }
+    .code-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        align-items: stretch;
+    }
 
-  .btn-accent { width: 100%; }
+    .btn-accent {
+        width: 100%;
+    }
 
-  iframe { height: 340px; }
+    iframe {
+        height: 340px;
+    }
 
-  footer {
-    font-size: 10px;
-    line-height: 1.4;
-    margin-top: 14px;
-  }
+    footer {
+        font-size: 10px;
+        line-height: 1.4;
+        margin-top: 14px;
+    }
 }
 @supports (-webkit-touch-callout: none) {
-  body { min-height: -webkit-fill-available; }
-  html { height: -webkit-fill-available; }
+    body {
+        min-height: -webkit-fill-available;
+    }
+    html {
+        height: -webkit-fill-available;
+    }
 }
 
 .pager {
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 14px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
 }
 
 .pager-info {
-  font-size: 12px;
-  color: var(--muted);
-  padding: 0 8px;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 0 8px;
 }
 
 .pager button:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  filter: grayscale(0.3);
+    opacity: 0.45;
+    cursor: not-allowed;
+    filter: grayscale(0.3);
 }
 
 /* mobile: pager không bị tràn */
 @media (max-width: 520px) {
-  .pager {
-    gap: 8px;
-    padding: 10px;
-  }
-  .pager-info {
-    font-size: 10px;
-    text-align: center;
-  }
+    .pager {
+        gap: 8px;
+        padding: 10px;
+    }
+    .pager-info {
+        font-size: 10px;
+        text-align: center;
+    }
 }
 
+/* ===== Guide Modal ===== */
+.guide-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    background: rgba(0, 0, 0, 0.55);
+}
 
+.guide-modal {
+    width: min(680px, 100%);
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.guide-title {
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.guide-card {
+    background: rgba(7, 18, 37, 0.35);
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.guide-row {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin: 6px 0;
+}
+
+.guide-label {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.guide-value {
+    color: var(--text);
+    font-size: 11px;
+}
+
+.guide-text {
+    background: rgba(7, 18, 37, 0.18);
+    padding: 12px;
+    border-radius: 12px;
+    border: 2px solid rgba(45, 90, 166, 0.35);
+}
+
+.guide-steps {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.guide-steps li {
+    margin: 8px 0;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.guide-note {
+    margin-top: 10px;
+    font-size: 10px;
+    color: var(--muted);
+    opacity: 0.9;
+}
+
+.guide-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+/* Mobile: modal gọn hơn, nút dễ bấm */
+@media (max-width: 520px) {
+    .guide-title {
+        font-size: 12px;
+    }
+    .guide-modal {
+        padding: 14px;
+    }
+    .guide-actions {
+        grid-template-columns: 1fr;
+    }
+    .guide-steps li {
+        font-size: 10px;
+    }
+}
