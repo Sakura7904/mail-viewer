@@ -1,5 +1,5 @@
 /* assets/styles.css */
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap");
 
 :root {
     /* Theme */
@@ -40,7 +40,7 @@ body {
     height: auto; /* quan trọng: tránh background chỉ vẽ trong 1 viewport */
     margin: 0;
 
-    font-family: "Press Start 2P", ui-monospace, monospace;
+     font-family: "Pixelify Sans", ui-sans-serif, system-ui, sans-serif;
     color: var(--text);
     -webkit-font-smoothing: antialiased;
     text-rendering: geometricPrecision;
@@ -353,15 +353,21 @@ footer {
 }
 
 /* ===== Guide Modal ===== */
-.guide-backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 9998;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px;
-    background: rgba(0, 0, 0, 0.55);
+.guide-backdrop{
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+
+  /* dim nền mạnh hơn */
+  background: rgba(0,0,0,.62);
+
+  /* blur nền phía sau */
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
 }
 
 .guide-modal {
@@ -430,6 +436,11 @@ footer {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-top: 14px;
+}
+.guide-modal,
+.guide-modal * {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
+  letter-spacing: 0 !important;
 }
 
 /* Mobile: modal gọn hơn, nút dễ bấm */
