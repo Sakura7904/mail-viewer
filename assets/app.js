@@ -70,4 +70,11 @@ window.addEventListener("DOMContentLoaded", () => {
     hideAuth();
     load();
     startAutoRefresh();
+    
+    window.addEventListener("DOMContentLoaded", () => {
+        bindUI();
+        load();
+        startAutoRefresh();
+    });
+
 });
