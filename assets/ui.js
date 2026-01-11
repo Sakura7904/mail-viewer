@@ -16,7 +16,7 @@ export function renderEmails(emails) {
 
     emails.forEach((mail) => {
         const div = document.createElement("div");
-        div.className = "panel pixel-border p-4 mail-item";
+        div.className = "panel pixel-border p-4";
 
         const date = mail.date ? new Date(mail.date).toLocaleString() : "";
         const toAddr = String(mail.envelope_to || mail?.to_parsed?.[0]?.address || "");
@@ -29,15 +29,15 @@ export function renderEmails(emails) {
       <div class="flex flex-col gap-3">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div class="small-text text-[color:var(--muted)]">${escapeHtml(date)}</div>
-          <div class="badge truncate mail-to">📩 ${escapeHtml(toAddr)}</div>
+          <div class="badge truncate">📩 ${escapeHtml(toAddr)}</div>
         </div>
 
         <div class="flex flex-col gap-2">
-          <div class="text-base break-words mail-subject">${escapeHtml(subject)}</div>
+          <div class="text-base break-words">${escapeHtml(subject)}</div>
 
           ${code
                 ? `
-              <div class="flex flex-col sm:flex-row gap-2 sm:items-center code-row">
+              <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
                 <div class="badge">🔑 CODE: <span class="text-white">${escapeHtml(code)}</span></div>
                 <button class="pixel-btn btn-accent w-full sm:w-auto"
                         data-copy="${escapeAttr(code)}">
