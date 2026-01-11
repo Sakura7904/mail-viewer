@@ -278,3 +278,8 @@ footer {
     margin-top: 14px;
   }
 }
+@supports (-webkit-touch-callout: none) {
+  body { min-height: -webkit-fill-available; }
+  html { height: -webkit-fill-available; }
+}
+
