@@ -1,15 +1,94 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Mail Viewer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen bg-slate-900 text-white flex items-center justify-center">
-  <div class="text-center">
-    <h1 class="text-3xl font-bold">Mail Viewer</h1>
-    <p class="mt-3 text-slate-300">GitHub Pages đang hoạt động 🎉</p>
+
+<body class="bg-slate-900 text-white min-h-screen">
+  <div class="max-w-5xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6">📬 Mail Viewer</h1>
+
+    <!-- Filter -->
+    <div class="flex gap-2 mb-6">
+      <input
+        id="tagInput"
+        placeholder="Nhập tag (vd: gptno1)"
+        class="flex-1 px-4 py-2 rounded bg-slate-800 border border-slate-700"
+      />
+      <button
+        onclick="loadMails()"
+        class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500"
+      >
+        Load
+      </button>
+    </div>
+
+    <!-- Status -->
+    <div id="status" class="text-slate-400 mb-4"></div>
+
+    <!-- Mail list -->
+    <div id="mailList" class="space-y-4"></div>
   </div>
+
+  <script>
+    const API_BASE = "https://mail-viewer.lupinanh2k4.workers.dev";
+
+    async function loadMails() {
+      const tag = document.getElementById("tagInput").value.trim();
+      const status = document.getElementById("status");
+      const list = document.getElementById("mailList");
+
+      status.textContent = "⏳ Đang tải mail...";
+      list.innerHTML = "";
+
+      try {
+        const url = tag
+          ? `${API_BASE}/emails?tag=${encodeURIComponent(tag)}`
+          : `${API_BASE}/emails`;
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        status.textContent = `📨 ${data.count} email`;
+
+        if (!data.emails.length) {
+          list.innerHTML = `<div class="text-slate-400">Không có email</div>`;
+          return;
+        }
+
+        data.emails.forEach((mail) => {
+          const div = document.createElement("div");
+          div.className =
+            "bg-slate-800 border border-slate-700 rounded p-4 hover:bg-slate-700";
+
+          div.innerHTML = `
+            <div class="text-sm text-slate-400 mb-1">
+              ${new Date(mail.date).toLocaleString()}
+            </div>
+            <div class="font-semibold mb-2">
+              ${mail.subject || "(no subject)"}
+            </div>
+            <details class="cursor-pointer">
+              <summary class="text-blue-400">Xem nội dung</summary>
+              <div class="mt-3 p-3 bg-white text-black rounded overflow-auto max-h-[400px]">
+                ${mail.html || `<pre>${mail.text || ""}</pre>`}
+              </div>
+            </details>
+          `;
+
+          list.appendChild(div);
+        });
+      } catch (err) {
+        status.textContent = "❌ Lỗi tải mail";
+        console.error(err);
+      }
+    }
+
+    // auto load khi mở trang
+    loadMails();
+  </script>
 </body>
 </html>
