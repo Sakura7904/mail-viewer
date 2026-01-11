@@ -11,30 +11,6 @@
 <body class="min-h-screen">
   <div class="pixel-noise"></div>
 
-  <!-- Auth modal -->
-  <div id="authModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4">
-    <div class="w-full max-w-md panel pixel-border p-6">
-      <div class="text-xl mb-3">🔐 PASSWORD</div>
-      <div class="small-text text-[color:var(--muted)] mb-4">
-        Nhập password để truy cập hộp thư.
-      </div>
-
-      <input id="passwordInput" type="password"
-        class="pixel-input w-full"
-        placeholder="••••••••" />
-
-      <div id="authError" class="tiny-text mt-3 text-[color:var(--pink2)]"></div>
-
-      <button id="authBtn" class="pixel-btn btn-primary w-full mt-4">
-        OPEN
-      </button>
-
-      <div class="tiny-text mt-4 text-[color:var(--muted)] opacity-80">
-        Tip: bạn có thể đổi theme sau, nhưng pixel thì đã “đúng bài” 😄
-      </div>
-    </div>
-  </div>
-
   <div id="app" class="max-w-5xl mx-auto p-5 md:p-8">
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
@@ -48,9 +24,6 @@
         <span class="badge">⚡ Auto refresh 10s</span>
       </div>
 
-      <button id="logoutBtn" class="pixel-btn btn-accent">
-        LOGOUT
-      </button>
     </div>
 
     <!-- Controls -->
