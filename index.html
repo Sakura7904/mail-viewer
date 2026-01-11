@@ -2,53 +2,78 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <title>Mail Viewer</title>
+  <title>Mail Viewer (Pixel)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./assets/styles.css">
 </head>
 
-<body class="bg-slate-900 text-white min-h-screen">
+<body class="min-h-screen">
+  <div class="pixel-noise"></div>
+
   <!-- Auth modal -->
-  <div id="authModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center p-4">
-    <div class="w-full max-w-md bg-slate-800 border border-slate-700 rounded-2xl p-6">
-      <div class="text-xl font-bold mb-2">🔐 Nhập password</div>
-      <div class="text-slate-300 mb-4 text-sm">Nhập password để xem email</div>
+  <div id="authModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4">
+    <div class="w-full max-w-md panel pixel-border p-6">
+      <div class="text-xl mb-3">🔐 PASSWORD</div>
+      <div class="small-text text-[color:var(--muted)] mb-4">
+        Nhập password để truy cập hộp thư.
+      </div>
 
       <input id="passwordInput" type="password"
-        class="w-full px-4 py-2 rounded-lg bg-slate-900 border border-slate-700"
-        placeholder="Password" />
+        class="pixel-input w-full"
+        placeholder="••••••••" />
 
-      <div id="authError" class="text-red-400 text-sm mt-2"></div>
+      <div id="authError" class="tiny-text mt-3 text-[color:var(--pink2)]"></div>
 
-      <button id="authBtn"
-        class="mt-4 w-full px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500">
-        Mở
+      <button id="authBtn" class="pixel-btn btn-primary w-full mt-4">
+        OPEN
       </button>
+
+      <div class="tiny-text mt-4 text-[color:var(--muted)] opacity-80">
+        Tip: bạn có thể đổi theme sau, nhưng pixel thì đã “đúng bài” 😄
+      </div>
     </div>
   </div>
 
-  <div id="app" class="max-w-5xl mx-auto p-6">
-    <div class="flex items-center justify-between gap-3 mb-6">
-      <h1 class="text-3xl font-bold">📬 Mail Viewer</h1>
-      <button id="logoutBtn" class="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 hover:bg-slate-700">
-        Logout
+  <div id="app" class="max-w-5xl mx-auto p-5 md:p-8">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+      <div class="flex items-center gap-3">
+        <div class="pixel-border panel px-4 py-3">
+          <div class="text-lg">📬 MAIL VIEWER</div>
+          <div class="tiny-text text-[color:var(--muted)] mt-2">
+            blue × white × pink
+          </div>
+        </div>
+        <span class="badge">⚡ Auto refresh 10s</span>
+      </div>
+
+      <button id="logoutBtn" class="pixel-btn btn-accent">
+        LOGOUT
       </button>
     </div>
 
     <!-- Controls -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mb-6">
-      <input id="tagInput" placeholder="Nhập tag (vd: gptno1)"
-        class="px-4 py-2 rounded-lg bg-slate-800 border border-slate-700" />
-      <input id="searchInput" placeholder="Search subject..."
-        class="px-4 py-2 rounded-lg bg-slate-800 border border-slate-700" />
-      <button id="loadBtn"
-        class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500">
-        Load
-      </button>
+    <div class="panel pixel-border p-4 mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <input id="tagInput" class="pixel-input"
+          placeholder="TAG (vd: gptno1)" />
+        <input id="searchInput" class="pixel-input"
+          placeholder="SEARCH SUBJECT..." />
+        <button id="loadBtn" class="pixel-btn btn-primary">
+          LOAD
+        </button>
+      </div>
+
+      <div id="status" class="small-text text-[color:var(--muted)] mt-4"></div>
     </div>
 
-    <div id="status" class="text-slate-400 mb-4"></div>
+    <!-- List -->
     <div id="mailList" class="space-y-4"></div>
+
+    <div class="tiny-text text-[color:var(--muted)] opacity-70 mt-8">
+      © Pixel Mail Viewer — chạy GitHub Pages + Cloudflare Worker
+    </div>
   </div>
 
   <script type="module" src="./assets/app.js"></script>

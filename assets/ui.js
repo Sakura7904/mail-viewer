@@ -20,23 +20,28 @@ export function renderEmails(emails) {
   list.innerHTML = "";
 
   if (!emails.length) {
-    list.innerHTML = `<div class="text-slate-400">Không có email</div>`;
+    list.innerHTML = `<div class="small-text text-[color:var(--muted)]">Không có email</div>`;
     return;
   }
 
   emails.forEach((mail) => {
     const div = document.createElement("div");
-    div.className =
-      "bg-slate-800 border border-slate-700 rounded-xl p-4 hover:bg-slate-700 transition";
+    div.className = "panel pixel-border p-4";
 
     const date = mail.date ? new Date(mail.date).toLocaleString() : "";
+    const subject = escapeHtml(mail.subject || "(no subject)");
 
     div.innerHTML = `
-      <div class="text-sm text-slate-400 mb-1">${date}</div>
-      <div class="font-semibold mb-2">${escapeHtml(mail.subject || "(no subject)")}</div>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+        <div class="small-text text-[color:var(--muted)]">${date}</div>
+        <div class="badge">📩 ${escapeHtml((mail.envelope_to || mail?.to_parsed?.[0]?.address || ""))}</div>
+      </div>
+
+      <div class="text-base mb-2">${subject}</div>
+
       <details class="cursor-pointer">
-        <summary class="text-blue-400">Xem nội dung</summary>
-        <div class="mt-3 p-3 bg-white text-black rounded-lg overflow-auto max-h-[420px]">
+        <summary class="small-text text-[color:var(--blue2)]">▶ XEM NỘI DUNG</summary>
+        <div class="mt-3 pixel-border p-3 bg-white text-black rounded-lg overflow-auto max-h-[420px]">
           ${mail.html || `<pre>${escapeHtml(mail.text || "")}</pre>`}
         </div>
       </details>

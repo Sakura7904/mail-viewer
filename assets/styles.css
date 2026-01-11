@@ -1,0 +1,101 @@
+/* assets/styles.css */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+:root{
+  --bg1:#071225;
+  --bg2:#0b1e3a;
+
+  --blue:#3b82f6;  /* blue-500 */
+  --blue2:#60a5fa; /* blue-400 */
+  --pink:#ff4fd8;
+  --pink2:#ff86e8;
+
+  --panel:#0b1730;
+  --panel2:#0f2142;
+  --text:#eaf2ff;
+  --muted:#a9c1ff;
+  --border:#24406f;
+}
+
+html, body { height: 100%; }
+
+body{
+  font-family: "Press Start 2P", ui-monospace, monospace;
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(59,130,246,.25), transparent 60%),
+    radial-gradient(900px 500px at 80% 25%, rgba(255,79,216,.18), transparent 55%),
+    linear-gradient(180deg, var(--bg2), var(--bg1));
+  color: var(--text);
+}
+
+/* pixel-ish noise */
+.pixel-noise{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+.pixel-border{
+  border: 2px solid var(--border);
+  box-shadow:
+    0 0 0 2px rgba(0,0,0,.55),
+    6px 6px 0 0 rgba(0,0,0,.35);
+  border-radius: 10px;
+}
+
+.pixel-btn{
+  border: 2px solid var(--border);
+  box-shadow:
+    0 0 0 2px rgba(0,0,0,.55),
+    4px 4px 0 rgba(0,0,0,.35);
+  border-radius: 10px;
+  padding: 12px 14px;
+  transition: transform .06s ease, filter .15s ease;
+}
+.pixel-btn:active{
+  transform: translate(2px,2px);
+  box-shadow:
+    0 0 0 2px rgba(0,0,0,.55),
+    2px 2px 0 rgba(0,0,0,.35);
+}
+
+.pixel-input{
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: rgba(7,18,37,.55);
+  color: var(--text);
+  padding: 12px 14px;
+  outline: none;
+}
+.pixel-input::placeholder{ color: rgba(169,193,255,.65); }
+
+.btn-primary{
+  background: linear-gradient(180deg, var(--blue2), var(--blue));
+  color: #071225;
+}
+.btn-accent{
+  background: linear-gradient(180deg, var(--pink2), var(--pink));
+  color: #071225;
+}
+
+.panel{
+  background: linear-gradient(180deg, rgba(15,33,66,.86), rgba(11,23,48,.86));
+}
+.badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 2px solid var(--border);
+  background: rgba(7,18,37,.45);
+  color: var(--muted);
+  box-shadow: 0 0 0 2px rgba(0,0,0,.55);
+  font-size: 12px;
+}
+
+.small-text { font-size: 12px; line-height: 1.6; }
+.tiny-text  { font-size: 10px; line-height: 1.6; }
